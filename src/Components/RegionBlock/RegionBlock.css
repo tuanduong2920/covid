@@ -1,0 +1,30 @@
+.country-block {
+  margin-top: 0 !important;
+  display: block;
+  /* padding: 25px 25px 25px 30px; */
+}
+
+.country-block-header{
+    display: flex;
+    color: #CCCCCC;
+
+}
+
+.country-block-content{
+    color: #CCCCCC;
+    line-height: 1;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.content-block{
+
+    padding: 10px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .country-block {
+    margin-top: 25px !important;
+  }
+}

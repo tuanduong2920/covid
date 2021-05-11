@@ -1,0 +1,34 @@
+/* .header-wrapper{
+    padding: 15px 0px;
+} */
+
+.logo-caption {
+  display: block;
+  font-size: 1.5rem;
+  padding-left: 10px;
+  align-self: center;
+  color: #fff;
+}
+.logo {
+  width: 30px;
+  height: 30px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width:991px) {
+    .logo-link{
+        justify-content: center;
+    }
+    
+}
+
+@media screen and (max-width:767px) {
+  
+    .last-update-wrap{
+        text-align: center;
+    }
+}
