@@ -5,7 +5,8 @@ import MapChart from "../../Components/MapChart/MapChart";
 import PageHOC from "../PageHOC";
 import ReactTooltip from "react-tooltip";
 
-import "./Dashboard.css"
+import "./Dashboard.css";
+import Covid19Api from "../../Api/Covid19/Covid19Api";
 
 const objTest = {
   imgSrc: "https://disease.sh/assets/img/flags/vn.png",
@@ -20,17 +21,17 @@ const objTest = {
 };
 
 const Dashboard = () => {
-  const [content, setContent] = useState("");
-  const [covidCount, setCovidCount] = useState([]);
+  const [toolTipContent, setToolTipContent] = useState("");
+  const [countries, setCountries] = useState([]);
 
   useEffect(async () => {
-    const res = await (
-      await fetch("https://disease.sh/v3/covid-19/countries")
-    ).json();
-    const counter = res.map((i) => {
-      return { iso: i.countryInfo.iso2, cases: i.cases };
-    });
-    setCovidCount(counter);
+    try {
+      const res = await Covid19Api.getALLCountries();
+
+      setCountries(res);
+    } catch (error) {
+      throw error;
+    }
   }, []);
 
   return (
@@ -44,31 +45,32 @@ const Dashboard = () => {
                   <TrackerList />
                 </div>
               </div>
-              <div className="col-xl-6 dashboard-map">
-                <div className="map-status-colors my-0 py-1">
-                  <ul className="colors d-flex">
-                    <li>
-                      <span className="min"></span>&lt;50k
-                    </li>
-                    <li>
-                      <span className="mid"></span>&lt;100k
-                    </li>
-                    <li>
-                      <span className="max"></span>&gt;100k
-                    </li>
-                  </ul>
+              <div className="col-xl-6 mt-3-onResponsive">
+                <div className="dashboard-map">
+                  <div className="map-status-colors my-0 py-1">
+                    <ul className="colors d-flex">
+                      <li>
+                        <span className="min"></span>&lt;50k
+                      </li>
+                      <li>
+                        <span className="mid"></span>&lt;100k
+                      </li>
+                      <li>
+                        <span className="max"></span>&gt;100k
+                      </li>
+                    </ul>
+                  </div>
+                  <MapChart
+                    setTooltipContent={setToolTipContent}
+                    countries={countries}
+                  />
+                  <ReactTooltip>{toolTipContent}</ReactTooltip>
                 </div>
-                <MapChart
-                  setTooltipContent={setContent}
-                  covidCount={covidCount}
-                />
-                <ReactTooltip>{content}</ReactTooltip>
               </div>
 
-              {/* <div className="col-xl-6">
-                <RegionBlock {...objTest} />
-                
-              </div> */}
+              <div className="col-xl-12 mt-3">
+                <RegionBlock countries={countries} />
+              </div>
             </div>
           </div>
         </div>

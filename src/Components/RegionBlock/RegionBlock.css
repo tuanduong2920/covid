@@ -1,12 +1,13 @@
 .country-block {
   margin-top: 0 !important;
   display: block;
-  /* padding: 25px 25px 25px 30px; */
+  padding: 25px 25px 25px 30px;
 }
 
 .country-block-header{
     display: flex;
     color: #CCCCCC;
+    justify-content: space-between;
 
 }
 
@@ -19,12 +20,14 @@
 }
 
 .content-block{
-
+  
     padding: 10px 0;
 }
 
-@media screen and (max-width: 1200px) {
-  .country-block {
-    margin-top: 25px !important;
-  }
+.country-info{
+  display: flex;
+}
+
+.country-select{
+  width: 250px;
 }

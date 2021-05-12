@@ -1,38 +1,44 @@
 import React from "react";
 import ContentBlock from "./ContentBlock/ContentBlock";
 import "./RegionBlock.css";
-const RegionBlock = ({
-  imgSrc,
-  countyName,
-  totalCase,
-  newCase,
-  totalRecovered,
-  totalDeath,
-  newDeath,
-  deathPercent,
-  activeCase,
-}) => {
+const RegionBlock = ({ countries }) => {
+  // console.log(countries);
   return (
-    <div className="worldwide-stats">
-      <div className="tracker-block country-block">
-        <div className="country-block-header">
-          <div className="tracker-block__icon">
-            <img src={imgSrc} alt="corona-icon" />
+    (countries.length > 0) && (
+      <div className="worldwide-stats">
+        <div className="tracker-block country-block">
+          <div className="country-block-header">
+            <div className="country-info">
+              <div className="tracker-block__icon">
+                <img src="#" alt="corona-icon" />
+              </div>
+              <h2>countyName</h2>
+            </div>
+            <div className="country-select">
+              <select
+                className="form-control"
+                onChange={(e) => console.log(e.target.value)}
+              >
+                {countries.map((i) => {
+                  // console.log(i);
+                  return <option value={i.country}>{i.country}</option>;
+                })}
+              </select>
+            </div>
           </div>
-          <h2>{countyName}</h2>
-        </div>
-        <div className="tracker-block__content country-block-content">
+          <div className="tracker-block__content country-block-content">
             {/* mapListContentBlock */}
 
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/>
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/>
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/>
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/>
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/>
-            <ContentBlock caption="Tổng số ca nhiễm" value="9999"/> 
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+            <ContentBlock caption="Tổng số ca nhiễm" value="9999" />
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 

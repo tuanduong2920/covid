@@ -1,0 +1,5 @@
+const Vaccine = {
+    getAll: async () => {
+        
+    }
+}

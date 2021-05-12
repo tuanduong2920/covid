@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {
   ZoomableGroup,
   ComposableMap,
@@ -19,10 +19,21 @@ const rounded = (num) => {
   }
 };
 
-const MapChart = ({ setTooltipContent, covidCount }) => {
+const MapChart = ({ setTooltipContent, countries }) => {
+  const [mapData, setMapData] = useState([]);
+
+  useEffect(() => {
+    const countiesData = [...countries];
+    const countriesMapData = countiesData.map((i) => {
+      return { iso: i.countryInfo.iso2, cases: i.cases };
+    });
+    setMapData(countriesMapData);
+    
+  }, [countries]);
+
   const getCaseByISO2 = (iso) => {
-    if (covidCount.length === 0) return;
-    const cases = covidCount.filter((e) => {
+    if (mapData.length === 0) return;
+    const cases = mapData.filter((e) => {
       return e.iso === iso;
     });
     if (cases.length === 0) return "update";
@@ -81,8 +92,13 @@ const MapChart = ({ setTooltipContent, covidCount }) => {
 
   return (
     <>
-      <ComposableMap data-tip="" projectionConfig={{ scale: 220 }} >
-        <ZoomableGroup >
+      <ComposableMap
+        height={550}
+        data-tip=""
+        projectionConfig={{ scale: 140 }}
+        projection="geoEquirectangular"
+      >
+        <ZoomableGroup>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
