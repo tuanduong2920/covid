@@ -26,6 +26,7 @@ const List = [
     totalCase: "9999999",
     todayCase: "9999",
   },
+  
 ];
 
 const TrackerList = () => {

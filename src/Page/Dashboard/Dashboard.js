@@ -7,31 +7,23 @@ import ReactTooltip from "react-tooltip";
 
 import "./Dashboard.css";
 import Covid19Api from "../../Api/Covid19/Covid19Api";
-
-const objTest = {
-  imgSrc: "https://disease.sh/assets/img/flags/vn.png",
-  countyName: "Việt Nam",
-  totalCase: "20000",
-  newCase: "20",
-  totalRecovered: "19999",
-  totalDeath: "20",
-  newDeath: "1",
-  deathPercent: "10",
-  activeCase: "10",
-};
+import CountriesTable from "../../Components/CountriesTable/CountriesTable";
 
 const Dashboard = () => {
   const [toolTipContent, setToolTipContent] = useState("");
   const [countries, setCountries] = useState([]);
 
-  useEffect(async () => {
-    try {
-      const res = await Covid19Api.getALLCountries();
+  useEffect(() => {
+    const fetchCountriesData = async () => {
+      try {
+        const res = await Covid19Api.getALLCountries();
 
-      setCountries(res);
-    } catch (error) {
-      throw error;
-    }
+        setCountries(res);
+      } catch (error) {
+        throw error;
+      }
+    };
+    fetchCountriesData();
   }, []);
 
   return (
@@ -67,9 +59,15 @@ const Dashboard = () => {
                   <ReactTooltip>{toolTipContent}</ReactTooltip>
                 </div>
               </div>
-
+            </div>
+            <div className="row ">
               <div className="col-xl-12 mt-3">
                 <RegionBlock countries={countries} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xl-12 mt-3 ">
+                <CountriesTable countries={countries} itemDisplay={8}/>
               </div>
             </div>
           </div>

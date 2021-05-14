@@ -6,13 +6,13 @@
 
 .country-block-header{
     display: flex;
-    color: #CCCCCC;
+    /* color: #CCCCCC; */
     justify-content: space-between;
 
 }
 
 .country-block-content{
-    color: #CCCCCC;
+    /* color: #CCCCCC; */
     line-height: 1;
     display: flex;
     flex-wrap: wrap;
@@ -22,12 +22,15 @@
 .content-block{
   
     padding: 10px 0;
+    transition: all 0.25s;
 }
 
 .country-info{
   display: flex;
+  transition: all 0.25s;
 }
 
 .country-select{
   width: 250px;
+  
 }
