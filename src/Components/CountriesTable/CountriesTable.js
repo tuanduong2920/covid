@@ -44,42 +44,44 @@ const CountriesTable = ({ countries, itemDisplay }) => {
             </form>
           </div>
         </div>
+        <div className="table-content">
+          <table className="table  table-striped">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Quốc gia</td>
+                <td>Số ca nhiễm</td>
+                <td>Tử vong</td>
+                <td>Ca mới</td>
+                <td>Đã hồi phục</td>
+                <td>Số ca hiện tại</td>
+              </tr>
+            </thead>
+            <tbody>
+              {pageList &&
+                pageList.map((i) => {
+                  return (
+                    <tr className="table-row">
+                      <td className="item">
+                        <img
+                          className="flag"
+                          src={i.countryInfo.flag}
+                          alt="flag"
+                        />
+                      </td>
+                      <td className="item">{i.country}</td>
+                      <td className="item">{i.cases}</td>
+                      <td className="item">{i.deaths}</td>
+                      <td className="item">{i.todayCases}</td>
+                      <td className="item">{i.recovered}</td>
+                      <td className="item">{i.active}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
 
-        <table className="table  table-striped">
-          <thead>
-            <tr>
-              <td></td>
-              <td>Quốc gia</td>
-              <td>Số ca nhiễm</td>
-              <td>Đã chết</td>
-              <td>Ca mới</td>
-              <td>Đã hồi phục</td>
-              <td>Số ca hiện tại</td>
-            </tr>
-          </thead>
-          <tbody>
-            {pageList &&
-              pageList.map((i) => {
-                return (
-                  <tr>
-                    <td>
-                      <img
-                        className="flag"
-                        src={i.countryInfo.flag}
-                        alt="flag"
-                      />
-                    </td>
-                    <td>{i.country}</td>
-                    <td>{i.cases}</td>
-                    <td>{i.deaths}</td>
-                    <td>{i.todayCases}</td>
-                    <td>{i.recovered}</td>
-                    <td>{i.active}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
         <Pagination
           activePage={currentPage}
           itemsCountPerPage={itemDisplay}

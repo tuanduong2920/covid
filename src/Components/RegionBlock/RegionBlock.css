@@ -4,33 +4,32 @@
   padding: 25px 25px 25px 30px;
 }
 
-.country-block-header{
-    display: flex;
-    /* color: #CCCCCC; */
-    justify-content: space-between;
-
+.country-block-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.country-block-content{
-    /* color: #CCCCCC; */
-    line-height: 1;
-    display: flex;
-    flex-wrap: wrap;
-    
+.country-block-content {
+  line-height: 1;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.content-block{
-  
-    padding: 10px 0;
-    transition: all 0.25s;
+.content-block {
+  padding: 10px 0;
+  transition: all 0.25s;
 }
 
-.country-info{
+.country-info {
   display: flex;
   transition: all 0.25s;
 }
 
-.country-select{
+.country-select {
   width: 250px;
-  
+}
+
+.region-flag {
+  width: 50px;
 }

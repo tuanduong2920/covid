@@ -1,8 +1,23 @@
-import React from "react";
-import './Header.css';
-import CoronaRed from '../../assets/icon/corona-icon-red.png'
+import React, { useEffect, useState } from "react";
+import "./Header.css";
+import CoronaRed from "../../assets/icon/corona-icon-red.png";
+import Covid19Api from "../../Api/Covid19/Covid19Api";
 
 const Header = () => {
+  const [updateTime, setUpdateTime] = useState();
+  useEffect(() => {
+    const fetchDataGlobal = async () => {
+      try {
+        const res = await Covid19Api.getGlobal();
+        const updated = new Date(res.updated);
+        const dateTime = `${updated.toLocaleDateString()} (${updated.toLocaleTimeString()})`;
+        setUpdateTime(dateTime);
+      } catch (error) {
+        throw error;
+      }
+    };
+    fetchDataGlobal();
+  }, []);
   return (
     <header className="header-wrapper">
       <div className="container">
@@ -19,7 +34,7 @@ const Header = () => {
           <div className="col-md-6 col-lg-4">
             <div className="last-update-wrap">
               <p className="mb-0">
-                Update: <span className="last-update"></span>
+                Update: <span className="last-update">{updateTime}</span>
               </p>
             </div>
           </div>
@@ -34,7 +49,6 @@ const Header = () => {
                   <li>
                     <a href="map-dark.html">Bản đồ</a>
                   </li>
-                 
                 </ul>
               </nav>
             </div>

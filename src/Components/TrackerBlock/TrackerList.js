@@ -26,11 +26,32 @@ const List = [
     totalCase: "9999999",
     todayCase: "9999",
   },
-  
 ];
 
-const TrackerList = () => {
-  return <>{List.map(i => <Tracker {...i} />)}</>
+const TrackerList = ({ globalData }) => {
+  return (
+    <>
+      <Tracker
+        title="Số ca ghi nhận"
+        imgSrc={img}
+        totalCase={globalData.cases}
+        todayCase={globalData.todayCases}
+      />
+      <Tracker
+        title="Số ca tử vong"
+        imgSrc={img}
+        totalCase={globalData.deaths}
+        todayCase={globalData.todayDeaths}
+      />
+      <Tracker
+        title="Số ca phục hồi"
+        imgSrc={img}
+        totalCase={globalData.recovered}
+        todayCase={globalData.todayRecovered}
+      />
+     
+    </>
+  );
 };
 
 export default TrackerList;

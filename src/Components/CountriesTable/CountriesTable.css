@@ -4,9 +4,20 @@
 
 .table-header{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     
+}
+
+.table-content{
+    overflow: auto;
+}
+.table-row{
+    transition: all 0.25s;
+}
+.item{
+    transition: all 0.3s;
 }
 
 .form-control{
@@ -25,8 +36,8 @@
 }
 
 .flag{
-    /* width: 35px; */
-    height: 35px;
+    width: 35px;
+    /* height: 35px; */
 }
 
 .pagination{

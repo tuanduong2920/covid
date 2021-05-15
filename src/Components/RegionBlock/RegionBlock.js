@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Select from "react-select";
+import CountryApi from "../../Api/Country/CountryApi";
+import Covid19Api from "../../Api/Covid19/Covid19Api";
+
+import RegionChart from "../Chart/RegionChart/RegionChart";
 import ContentBlock from "./ContentBlock/ContentBlock";
 import "./RegionBlock.css";
 const RegionBlock = ({ countries }) => {
   const [selectValue, setSelectvalue] = useState();
   const [selectArr, setSelectArr] = useState([]);
+  const [regionChartData, setRegionChartData] = useState([]);
 
   useEffect(() => {
     const contriesValue = countries.map((i) => {
@@ -14,6 +19,33 @@ const RegionBlock = ({ countries }) => {
     setSelectArr(contriesValue);
     setSelectvalue(countries[0]);
   }, [countries]);
+
+  // useEffect(() => {
+  //   const fetchCountries = async () => {
+  //     const res = await CountryApi.getCountries();
+  //     const contriesValue = res.map((i) => {
+  //       return { value: i.Country, label: i.Country };
+  //     });
+  //   };
+  //   fetchCountries();
+  // });
+
+  useEffect(() => {
+    const fetchRegionChartData = async () => {
+      try {
+        if (selectValue === undefined) return;
+        const res = await Covid19Api.getCountryFromTo(
+          selectValue.countryInfo.iso2
+        );
+        console.log(res);
+        setRegionChartData(res);
+      } catch (error) {
+        setRegionChartData([]);
+        throw error;
+      }
+    };
+    fetchRegionChartData();
+  }, [selectValue]);
 
   const handleChangeSelect = (selectOption) => {
     const [selectValue] = countries.filter(
@@ -27,16 +59,16 @@ const RegionBlock = ({ countries }) => {
       <div className="tracker-block country-block">
         <div className="country-block-header">
           <div className="country-info">
-            <div className="tracker-block__icon">
+            <div className="tracker-block__icon region-flag">
               <img
-                src={selectValue  && selectValue.countryInfo.flag}
+                src={selectValue && selectValue.countryInfo.flag}
                 alt="corona-icon"
               />
             </div>
-            <h2>{selectValue  && selectValue.country}</h2>
+            <h3>{selectValue && selectValue.country}</h3>
           </div>
           <div className="country-select">
-            {selectValue  && (
+            {selectValue && (
               <Select
                 onChange={handleChangeSelect}
                 defaultValue={selectArr[0]}
@@ -52,7 +84,7 @@ const RegionBlock = ({ countries }) => {
             value={selectValue && selectValue.cases}
           />
           <ContentBlock
-            caption="Tổng ca trong ngày"
+            caption="Số ca mới"
             value={selectValue && selectValue.todayCases}
           />
           <ContentBlock
@@ -72,9 +104,14 @@ const RegionBlock = ({ countries }) => {
             value={selectValue && selectValue.todayDeaths}
           />
         </div>
+        <div className="row">
+          <div className="col-lg-12 mt-2">
+            <RegionChart regionChartData={regionChartData} />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default RegionBlock;
+export default memo(RegionBlock);
