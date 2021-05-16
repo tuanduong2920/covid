@@ -34,7 +34,7 @@ const Header = () => {
           <div className="col-md-6 col-lg-4">
             <div className="last-update-wrap">
               <p className="mb-0">
-                Update: <span className="last-update">{updateTime}</span>
+                Cập nhật: <span className="last-update">{updateTime}</span>
               </p>
             </div>
           </div>

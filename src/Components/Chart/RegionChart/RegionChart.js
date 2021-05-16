@@ -20,7 +20,7 @@ const RegionChart = ({ regionChartData, country }) => {
       },
       title: {
         display: true,
-        text: `Biểu đồ covid trong 30 ngày của ${country}`,
+        text: `Biểu đồ covid trong 30 ngày của ${ country && country.country}`,
         position: "bottom",
         color: "#555555",
       },
@@ -33,7 +33,7 @@ const RegionChart = ({ regionChartData, country }) => {
       return date;
     });
     label.shift();
-    // console.log('label',label)
+   
     const TotalCases = convertCasesByDay(regionChartData, "Confirmed");
     TotalCases.pop();
     const TotalDeaths = convertCasesByDay(regionChartData, "Deaths");
@@ -65,7 +65,7 @@ const RegionChart = ({ regionChartData, country }) => {
       ],
     });
 
-    // console.log(label)
+  
   }, [regionChartData]);
 
   return <Chart dataSet={dataSet} options={options} />;

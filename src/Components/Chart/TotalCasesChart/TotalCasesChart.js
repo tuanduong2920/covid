@@ -11,7 +11,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "Biểu đồ ca dương tính trong 30 ngày",
+      text: "Biểu đồ ca dương tính trong 30 ngày trên thế giới",
       position: "top",
       color: "#007bff",
     },
@@ -25,7 +25,7 @@ const TotalCasesChart = ({ globalChartData }) => {
       const date = new Date(i.Date).toLocaleDateString();
       return date;
     });
-    const dataCases = globalChartData.map((i) => i.TotalConfirmed);
+    const dataCases = globalChartData.map((i) => i.NewConfirmed);
   
     setDataSet({
       labels: label,
@@ -39,7 +39,7 @@ const TotalCasesChart = ({ globalChartData }) => {
       ],
     });
 
-    // console.log(label)
+    
   }, [globalChartData]);
 
   return <Chart dataSet={dataSet} options={options} />;

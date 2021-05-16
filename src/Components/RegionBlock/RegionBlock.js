@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useState } from "react";
 import Select from "react-select";
-import CountryApi from "../../Api/Country/CountryApi";
 import Covid19Api from "../../Api/Covid19/Covid19Api";
 
 import RegionChart from "../Chart/RegionChart/RegionChart";
 import ContentBlock from "./ContentBlock/ContentBlock";
 import "./RegionBlock.css";
+
 const RegionBlock = ({ countries }) => {
   const [selectValue, setSelectvalue] = useState();
   const [selectArr, setSelectArr] = useState([]);
@@ -20,16 +20,6 @@ const RegionBlock = ({ countries }) => {
     setSelectvalue(countries[0]);
   }, [countries]);
 
-  // useEffect(() => {
-  //   const fetchCountries = async () => {
-  //     const res = await CountryApi.getCountries();
-  //     const contriesValue = res.map((i) => {
-  //       return { value: i.Country, label: i.Country };
-  //     });
-  //   };
-  //   fetchCountries();
-  // });
-
   useEffect(() => {
     const fetchRegionChartData = async () => {
       try {
@@ -37,7 +27,7 @@ const RegionBlock = ({ countries }) => {
         const res = await Covid19Api.getCountryFromTo(
           selectValue.countryInfo.iso2
         );
-        console.log(res);
+
         setRegionChartData(res);
       } catch (error) {
         setRegionChartData([]);
@@ -106,7 +96,10 @@ const RegionBlock = ({ countries }) => {
         </div>
         <div className="row">
           <div className="col-lg-12 mt-2">
-            <RegionChart regionChartData={regionChartData} />
+            <RegionChart
+              regionChartData={regionChartData}
+              country={selectValue && selectValue}
+            />
           </div>
         </div>
       </div>

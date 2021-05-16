@@ -8,7 +8,6 @@ const time = (dayNumber) => {
       new Date(new Date().setDate(new Date().getDate() - dayNumber))
     ).setUTCHours(0, 0, 0, 0)
   ).toISOString();
-  // console.log(lastWeek);
   const res = { from: lastWeek, to: today };
   return res;
 };

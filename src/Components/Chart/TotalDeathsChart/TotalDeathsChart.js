@@ -9,7 +9,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "Biểu đồ ca tử vong trong 30 ngày",
+      text: "Biểu đồ ca tử vong trong 30 ngày trên thế giới",
       position: "top",
       color: "#DC143C",
     },
@@ -24,7 +24,7 @@ const TotalDeathsChart = ({ globalChartData }) => {
       const date = new Date(i.Date).toLocaleDateString();
       return date;
     });
-    const data = globalChartData.map((i) => i.TotalDeaths);
+    const data = globalChartData.map((i) => i.NewDeaths );
     setDataSet({
       labels: label,
       datasets: [

@@ -8,7 +8,7 @@ import ReactTooltip from "react-tooltip";
 import "./Dashboard.css";
 import Covid19Api from "../../Api/Covid19/Covid19Api";
 import CountriesTable from "../../Components/CountriesTable/CountriesTable";
-import Chart from "../../Components/Chart/Chart";
+
 import TotalCasesChart from "../../Components/Chart/TotalCasesChart/TotalCasesChart";
 import TotalDeathsChart from "../../Components/Chart/TotalDeathsChart/TotalDeathsChart";
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
           const d2 = new Date(i2.Date);
           return d1 - d2;
         });
-        console.log(globalChartAscending);
+
         setGlobalChartData(globalChartAscending);
       } catch (error) {
         throw error;
