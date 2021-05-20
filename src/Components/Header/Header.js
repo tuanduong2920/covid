@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 import CoronaRed from "../../assets/icon/corona-icon-red.png";
 import Covid19Api from "../../Api/Covid19/Covid19Api";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [updateTime, setUpdateTime] = useState();
@@ -24,10 +25,10 @@ const Header = () => {
         <div className="row justify-content-between align-items-center">
           <div className="col-lg-4">
             <div className="logo-wrap">
-              <a className="logo-link" href="#">
+              <Link className="logo-link" to="/">
                 <img src={CoronaRed} className="logo" alt="logo" />
                 <span className="logo-caption">Covid19</span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -44,10 +45,15 @@ const Header = () => {
               <nav className="menubar">
                 <ul className="nav">
                   <li>
-                    <a href="index-dark.html">Thống kê</a>
+                    <NavLink activeClassName="active" to="/thong-ke">
+                      Thống kê
+                    </NavLink>
                   </li>
                   <li>
-                    <a href="map-dark.html">Bản đồ</a>
+                    <NavLink to="/ban-do">Bản đồ</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/khai-bao-y-te">Khai báo y tế</NavLink>
                   </li>
                 </ul>
               </nav>

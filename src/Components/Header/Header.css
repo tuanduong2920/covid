@@ -18,17 +18,18 @@
   display: flex;
   align-items: center;
 }
-
-@media screen and (max-width:991px) {
-    .logo-link{
-        justify-content: center;
-    }
-    
+.active:active {
+  padding-bottom: 4px;
+  border-bottom: 4px solid #000;
+}
+@media screen and (max-width: 991px) {
+  .logo-link {
+    justify-content: center;
+  }
 }
 
-@media screen and (max-width:767px) {
-  
-    .last-update-wrap{
-        text-align: center;
-    }
+@media screen and (max-width: 767px) {
+  .last-update-wrap {
+    text-align: center;
+  }
 }

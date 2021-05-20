@@ -63,7 +63,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <PageHOC>
+    <>
       <main className="main-content-wrapper">
         <div className="content-section-1">
           <div className="container">
@@ -117,7 +117,7 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-    </PageHOC>
+    </>
   );
 };
 
