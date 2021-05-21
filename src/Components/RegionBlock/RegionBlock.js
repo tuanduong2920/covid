@@ -27,7 +27,7 @@ const RegionBlock = ({ countries }) => {
         const res = await Covid19Api.getCountryFromTo(
           selectValue.countryInfo.iso2
         );
-
+      
         setRegionChartData(res);
       } catch (error) {
         setRegionChartData([]);
@@ -98,7 +98,7 @@ const RegionBlock = ({ countries }) => {
           <div className="col-lg-12 mt-2">
             <RegionChart
               regionChartData={regionChartData}
-              country={selectValue && selectValue}
+              country={selectValue}
             />
           </div>
         </div>

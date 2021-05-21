@@ -20,6 +20,7 @@ const CountriesTable = ({ countries, itemDisplay }) => {
     const filter = initCountriesData.filter((e) => {
       return e.country.toLowerCase().includes(value.toLowerCase());
     });
+    setCurrentPage(1)
     setTableValue(filter);
   };
 

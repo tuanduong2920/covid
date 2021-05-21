@@ -1,0 +1,30 @@
+.table-patient {
+  width: 100%;
+  max-width: 350px;
+  min-width: 285px;
+}
+.table-responsive {
+  height: 500px;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+.table-responsive::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+    
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(left, #fff, #e4e4e4);
+  border: 1px solid #fff;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

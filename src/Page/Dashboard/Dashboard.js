@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import TrackerList from "../../Components/TrackerBlock/TrackerList";
 import RegionBlock from "../../Components/RegionBlock/RegionBlock";
 import MapChart from "../../Components/MapChart/MapChart";
-import PageHOC from "../PageHOC";
 import ReactTooltip from "react-tooltip";
-
 import "./Dashboard.css";
 import Covid19Api from "../../Api/Covid19/Covid19Api";
 import CountriesTable from "../../Components/CountriesTable/CountriesTable";

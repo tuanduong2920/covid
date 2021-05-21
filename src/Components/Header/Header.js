@@ -32,7 +32,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="col-md-6 col-lg-4">
+          <div className="col-md-5 col-lg-3">
             <div className="last-update-wrap">
               <p className="mb-0">
                 Cập nhật: <span className="last-update">{updateTime}</span>
@@ -40,17 +40,15 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="col-md-6 col-lg-4">
+          <div className="col-md-7 col-lg-5">
             <div className="navbar-wrap">
               <nav className="menubar">
                 <ul className="nav">
                   <li>
-                    <NavLink activeClassName="active" to="/thong-ke">
-                      Thống kê
-                    </NavLink>
+                    <NavLink to="/thong-ke">Thống kê</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/ban-do">Bản đồ</NavLink>
+                    <NavLink to="/">Bản đồ</NavLink>
                   </li>
                   <li>
                     <NavLink to="/khai-bao-y-te">Khai báo y tế</NavLink>

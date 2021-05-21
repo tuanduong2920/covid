@@ -5,15 +5,19 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Route, Switch } from "react-router-dom";
 import PageHOC from "./Page/PageHOC";
 import FormOTP from "./Components/Form/FormOTP";
+import Map from "./Page/Map/Map";
 function App() {
   return (
     <>
       <PageHOC>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/thong-ke" exact>
             <Dashboard />
           </Route>
-          <Route path="/khai-bao-y-te">
+          <Route path="/" exact>
+            <Map />
+          </Route>
+          <Route path="/khai-bao-y-te" exact>
             <ChakraProvider>
               <KBYT />
             </ChakraProvider>

@@ -1,0 +1,14 @@
+.tracker-block--4{
+    background-color: #6b6b6b6b;
+    height: auto;
+    
+}
+.list-prop{
+    width: 100% ;
+}
+.map{
+    background-color: #FFFFFF;
+}
+.track-item__title,.track-item__no {
+    color: black !important;
+}
