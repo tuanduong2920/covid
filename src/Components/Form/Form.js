@@ -22,7 +22,6 @@ import { Select } from "@chakra-ui/select";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
 
 const Form = (props) => {
- 
   const {
     register,
     handleSubmit,
@@ -31,7 +30,7 @@ const Form = (props) => {
   return (
     <Flex justify="center" align="center" w="60%" margin="auto">
       <Box w="100%">
-        <form onSubmit={handleSubmit(props.confirmHandler)}>
+        <form onSubmit={handleSubmit(props.onConfirm)}>
           <Stack spacing={3}>
             <Heading
               as="h2"
