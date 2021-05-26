@@ -2,10 +2,10 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormErrorMessage } from "@chakra-ui/form-control";
 import { FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Center, Flex, HStack, Stack, Text } from "@chakra-ui/layout";
+import { Flex, HStack, Stack, Text } from "@chakra-ui/layout";
 import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { useForm } from "react-hook-form";
-import { useState } from "react/cjs/react.development";
+
 
 const FormOTP = (props) => {
   const {

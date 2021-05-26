@@ -2,7 +2,7 @@ import Form from "../../Components/Form/Form";
 import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
 import FormOTP from "../../Components/Form/FormOTP";
-import FormCheckingCode from "../../Components/Form/FormCheckingCode";
+
 
 const KBYT = () => {
   const toast = useToast();
@@ -124,7 +124,7 @@ const KBYT = () => {
           });
       }, 500);
     } else {
-      console.log(data);
+      console.log("data",data);
       setIsSubmitting(true);
       fetch(`http://45.32.102.61:8080/api/verify/${data.phoneNumber}`, {
         method: "GET",

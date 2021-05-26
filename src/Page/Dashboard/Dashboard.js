@@ -29,7 +29,7 @@ const Dashboard = () => {
     fetchCountriesData();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchGlobalChartData = async () => {
       try {
         const res = await Covid19Api.getGlobalFromTo();

@@ -4,8 +4,9 @@ import KBYT from "./Page/KBYT/KBYT";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Route, Switch } from "react-router-dom";
 import PageHOC from "./Page/PageHOC";
-import FormOTP from "./Components/Form/FormOTP";
+
 import Map from "./Page/Map/Map";
+
 function App() {
   return (
     <>
@@ -15,7 +16,9 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/" exact>
-            <Map />
+            <ChakraProvider>
+              <Map />
+            </ChakraProvider>
           </Route>
           <Route path="/khai-bao-y-te" exact>
             <ChakraProvider>
