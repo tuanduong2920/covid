@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import Select from "react-select";
-import VnMap from "../../Components/MapChart/VnMap";
+import VnMap from "../../../Components/MapChart/VnMap";
 import { useToast } from "@chakra-ui/toast";
 import "./Map.css";
-import PatientsList from "../../Components/PatientsList/PatientsList";
-import Position from "../../Api/Position/Position";
-import Covid19Vn from "../../Api/Covid19Vn/Covid19Vn";
+import PatientsList from "../../../Components/PatientsList/PatientsList";
+import Position from "../../../Api/Position/Position";
+import Covid19Vn from "../../../Api/Covid19Vn/Covid19Vn";
 const Map = () => {
   const toast = useToast();
   const [toolTip, setToolTip] = useState("");

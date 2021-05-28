@@ -1,32 +1,26 @@
-import Dashboard from "./Page/Dashboard/Dashboard";
+import Dashboard from "./Page/Client/Dashboard/Dashboard";
 import "./App.css";
-import KBYT from "./Page/KBYT/KBYT";
+import KBYT from "./Page/Client/KBYT/KBYT";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Route, Switch } from "react-router-dom";
-import PageHOC from "./Page/PageHOC";
+import PageHOC from "./Page/Client/PageHOC";
 
-import Map from "./Page/Map/Map";
+import Map from "./Page/Client/Map/Map";
+import Login from "./Page/Admin/Login/Login";
+import Client from "./Page/Client/Client";
+import Admin from "./Page/Admin/Admin";
 
 function App() {
   return (
     <>
-      <PageHOC>
-        <Switch>
-          <Route path="/thong-ke" exact>
-            <Dashboard />
-          </Route>
-          <Route path="/" exact>
-            <ChakraProvider>
-              <Map />
-            </ChakraProvider>
-          </Route>
-          <Route path="/khai-bao-y-te" exact>
-            <ChakraProvider>
-              <KBYT />
-            </ChakraProvider>
-          </Route>
-        </Switch>
-      </PageHOC>
+      <Switch>
+        <Route path="/quan-ly">
+          <Admin />
+        </Route>
+        <Route path="/">
+          <Client />
+        </Route>
+      </Switch>
     </>
   );
 }

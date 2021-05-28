@@ -1,7 +1,7 @@
-import Form from "../../Components/Form/Form";
+import Form from "../../../Components/Form/Form";
 import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
-import FormOTP from "../../Components/Form/FormOTP";
+import FormOTP from "../../../Components/Form/FormOTP";
 
 
 const KBYT = () => {

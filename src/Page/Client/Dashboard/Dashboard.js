@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import TrackerList from "../../Components/TrackerBlock/TrackerList";
-import RegionBlock from "../../Components/RegionBlock/RegionBlock";
-import MapChart from "../../Components/MapChart/MapChart";
+import TrackerList from "../../../Components/TrackerBlock/TrackerList";
+import RegionBlock from "../../../Components/RegionBlock/RegionBlock";
+import MapChart from "../../../Components/MapChart/MapChart";
 import ReactTooltip from "react-tooltip";
 import "./Dashboard.css";
-import Covid19Api from "../../Api/Covid19/Covid19Api";
-import CountriesTable from "../../Components/CountriesTable/CountriesTable";
+import Covid19Api from "../../../Api/Covid19/Covid19Api";
+import CountriesTable from "../../../Components/CountriesTable/CountriesTable";
 
-import TotalCasesChart from "../../Components/Chart/TotalCasesChart/TotalCasesChart";
-import TotalDeathsChart from "../../Components/Chart/TotalDeathsChart/TotalDeathsChart";
+import TotalCasesChart from "../../../Components/Chart/TotalCasesChart/TotalCasesChart";
+import TotalDeathsChart from "../../../Components/Chart/TotalDeathsChart/TotalDeathsChart";
 
 const Dashboard = () => {
   const [toolTipContent, setToolTipContent] = useState("");
