@@ -41,7 +41,7 @@ const KBYT = () => {
           toast({
             position: "bottom",
             title: "Khai báo thành công ❤️",
-            description: "Cảm ơn bạn đã dành thời gian cho chũng tôi",
+            description: "Cảm ơn bạn đã dành thời gian cho chúng tôi",
             status: "success",
             duration: 5000,
             isClosable: true,

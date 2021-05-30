@@ -26,6 +26,13 @@ import {
   MenuDivider,
   Button,
   IconButton,
+  useToast,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import AdminHOC from "../AdminHOC";
 import Admin from "../../../Api/Admin/Admin";
@@ -42,6 +49,11 @@ import { Link } from "react-router-dom";
 const KBYT = () => {
   const [declareList, setDeclareList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef();
+  const toast = useToast();
 
   useEffect(() => {
     const fetchDeclarer = async () => {
@@ -54,6 +66,32 @@ const KBYT = () => {
     };
     fetchDeclarer();
   }, []);
+
+  const deleteDeclarer = async () => {
+    onClose();
+    try {
+      await Admin.deleteDeclarer(deleteId);
+      const res = declareList.filter((i) => i.id !== deleteId);
+      toast({
+        position: "bottom",
+        title: "Xóa thành công 🐱‍🐉",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
+      setDeclareList(res);
+    } catch (error) {
+      console.log(error);
+      toast({
+        position: "bottom",
+        title: "Có lỗi xảy ra 😢",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   const start = (currentPage - 1) * 6;
   const end = start + 6;
@@ -106,7 +144,15 @@ const KBYT = () => {
                           <Link to={path}>
                             <MenuItem icon={<EditIcon />}>Sửa</MenuItem>
                           </Link>
-                          <MenuItem icon={<DeleteIcon />}>Xóa</MenuItem>
+                          <MenuItem
+                            onClick={() => {
+                              setDeleteId(i.id);
+                              return setIsOpen(true);
+                            }}
+                            icon={<DeleteIcon />}
+                          >
+                            Xóa
+                          </MenuItem>
                         </MenuList>
                       </Menu>
                     </Td>
@@ -129,6 +175,30 @@ const KBYT = () => {
           </Box>
         </Container>
       </AdminHOC>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Xóa bản khai báo
+            </AlertDialogHeader>
+
+            <AlertDialogBody>Bạn có chắc chắn muốn xóa?</AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Hủy bỏ
+              </Button>
+              <Button colorScheme="red" onClick={deleteDeclarer} ml={3}>
+                Xóa
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </ChakraProvider>
   );
 };

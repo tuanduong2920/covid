@@ -1,9 +1,10 @@
 import { ChakraProvider, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import Form from "../../../Components/Form/Form";
 import AdminHOC from "../AdminHOC";
 
-const AddDeclarer = () => {
+const AddDeclarer = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const toast = useToast();
   const sendDataHandler = (data) => {
@@ -37,11 +38,12 @@ const AddDeclarer = () => {
           toast({
             position: "bottom",
             title: "Khai báo thành công ❤️",
-            description: "Cảm ơn bạn đã dành thời gian cho chũng tôi",
+            description: "Cảm ơn bạn đã dành thời gian cho chúng tôi",
             status: "success",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
           });
+          props.history.push('/quan-ly/kbyt');
         })
         .catch((er) => {
           toast({
@@ -49,11 +51,12 @@ const AddDeclarer = () => {
             title: "Đã có lỗi xảy ra",
             description: "Hãy thử lại...",
             status: "error",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
           });
         });
     }, 1000);
+
   };
   return (
     <ChakraProvider>
@@ -64,4 +67,4 @@ const AddDeclarer = () => {
   );
 };
 
-export default AddDeclarer;
+export default withRouter(AddDeclarer);

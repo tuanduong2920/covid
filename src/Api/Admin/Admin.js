@@ -28,9 +28,19 @@ const Admin = {
     return res;
   },
   getDeclarerById: async (id) => {
-    const res = await AxiosClient.get(`http://45.32.102.61:8080/api/declare/${id}`, {
-      baseURL: "",
-    });
+    const res = await AxiosClient.get(
+      `http://45.32.102.61:8080/api/declare/${id}`,
+      {
+        baseURL: "",
+      }
+    );
+    return res;
+  },
+  deleteDeclarer: async (id) => {
+    const res = await AxiosClient.delete(
+      `http://45.32.102.61:8080/api/declare/${id}`,
+      { baseURL: "" }
+    );
     return res;
   },
 };

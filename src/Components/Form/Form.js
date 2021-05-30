@@ -7,7 +7,7 @@ import {
 import { Input } from "@chakra-ui/input";
 import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/layout";
 import HalfBox from "../UI/HalfBox";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Select } from "@chakra-ui/select";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
 
@@ -17,11 +17,11 @@ const Form = (props) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues
+    getValues,
+    control,
   } = useForm();
 
   if (props.declarer) {
-    
     setValue("name", props.declarer.ho_ten);
     setValue("dob", props.declarer.nam_sinh);
     setValue("email", props.declarer.email);
@@ -31,9 +31,9 @@ const Form = (props) => {
     setValue("goPro", props.declarer.dia_diem);
     setValue("trieuChung", props.declarer.trieu_chung);
     setValue("tiepXuc", props.declarer.tiep_xuc);
-    console.log(getValues())
   }
 
+  console.log(getValues());
   return (
     <Flex justify="center" align="center" w="60%" margin="auto">
       <Box w="100%">
@@ -177,67 +177,83 @@ const Form = (props) => {
                     Trong vòng 14 ngày, Anh/chị có thấy xuất hiện dấu hiệu nào
                     sau đây không?
                   </FormLabel>
-                  <CheckboxGroup
+                  <Controller
                     name="trieuChung"
-                    colorScheme="green"
+                    control={control}
                     defaultValue={[""]}
-                    
-                  >
-                    <Stack spacing={1}>
-                      <Checkbox value="sốt" mb="0" {...register("trieuChung")}>
-                        Sốt
-                      </Checkbox>
-                      <Checkbox value="ho" {...register("trieuChung")}>
-                        Ho
-                      </Checkbox>
-                      <Checkbox value="khó thở" {...register("trieuChung")}>
-                        Khó thở
-                      </Checkbox>
-                      <Checkbox value="viêm phổi" {...register("trieuChung")}>
-                        Viêm phổi
-                      </Checkbox>
-                      <Checkbox value="đau bụng" {...register("trieuChung")}>
-                        Đau bụng
-                      </Checkbox>
-                      <Checkbox value="mệt mỏi" {...register("trieuChung")}>
-                        Mệt mỏi
-                      </Checkbox>
-                    </Stack>
-                  </CheckboxGroup>
+                    render={({ field }) => (
+                      <CheckboxGroup {...field} colorScheme="green">
+                        <Stack spacing={1}>
+                          <Checkbox
+                            value="sốt"
+                            mb="0"
+                            {...register("trieuChung")}
+                          >
+                            Sốt
+                          </Checkbox>
+                          <Checkbox value="ho" {...register("trieuChung")}>
+                            Ho
+                          </Checkbox>
+                          <Checkbox value="khó thở" {...register("trieuChung")}>
+                            Khó thở
+                          </Checkbox>
+                          <Checkbox
+                            value="viêm phổi"
+                            {...register("trieuChung")}
+                          >
+                            Viêm phổi
+                          </Checkbox>
+                          <Checkbox
+                            value="đau bụng"
+                            {...register("trieuChung")}
+                          >
+                            Đau bụng
+                          </Checkbox>
+                          <Checkbox value="mệt mỏi" {...register("trieuChung")}>
+                            Mệt mỏi
+                          </Checkbox>
+                        </Stack>
+                      </CheckboxGroup>
+                    )}
+                  />
                 </FormControl>
               </HalfBox>
               <HalfBox>
-                <FormControl id="trieuChung">
+                <FormControl id="tiepXuc">
                   <FormLabel>
                     Trong vòng 14 ngày, Anh/chị có tiếp xúc với:
                   </FormLabel>
-                  <CheckboxGroup
+                  <Controller
                     name="tiepXuc"
-                    colorScheme="green"
+                    control={control}
                     defaultValue={[""]}
-                  >
-                    <Stack spacing={1}>
-                      <Checkbox
-                        value="Người bệnh, nghi ngờ mắc bệnh COVID-19"
-                        mb="0"
-                        {...register("tiepXuc")}
-                      >
-                        Người bệnh, nghi ngờ mắc bệnh COVID-19
-                      </Checkbox>
-                      <Checkbox
-                        value="Người từ nước có bệnh COVID-19"
-                        {...register("tiepXuc")}
-                      >
-                        Người từ nước có bệnh COVID-19
-                      </Checkbox>
-                      <Checkbox
-                        value="Người có biểu hiện(sốt, ho,khó thở, viêm phổi)"
-                        {...register("tiepXuc")}
-                      >
-                        Người có biểu hiện(sốt, ho,khó thở, viêm phổi)
-                      </Checkbox>
-                    </Stack>
-                  </CheckboxGroup>
+                    render={({ field }) => (
+                      <CheckboxGroup {...field} colorScheme="green">
+                        <Stack spacing={1}>
+                          <Checkbox
+                            value="Người bệnh, nghi ngờ mắc bệnh COVID-19"
+                            mb="0"
+                            {...register("tiepXuc")}
+                          >
+                            Người bệnh, nghi ngờ mắc bệnh COVID-19
+                          </Checkbox>
+                          <Checkbox
+                            value="Người từ nước có bệnh COVID-19"
+                            {...register("tiepXuc")}
+                          >
+                            Người từ nước có bệnh COVID-19
+                          </Checkbox>
+                          <Checkbox
+                            value="Người có biểu hiện(sốt, ho,khó thở, viêm phổi)"
+                            {...register("tiepXuc")}
+                          >
+                            Người có biểu hiện(sốt, ho,khó thở, viêm phổi)
+                          </Checkbox>
+                        </Stack>
+                      </CheckboxGroup>
+                    )}
+                  />
+                  
                 </FormControl>
               </HalfBox>
             </Flex>

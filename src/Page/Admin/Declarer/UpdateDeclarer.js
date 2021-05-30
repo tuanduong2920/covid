@@ -1,10 +1,10 @@
 import { ChakraProvider, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 import Admin from "../../../Api/Admin/Admin";
 import Form from "../../../Components/Form/Form";
 import AdminHOC from "../AdminHOC";
-const UpdateDeclarer = () => {
+const UpdateDeclarer = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [declarer, setDeclarer] = useState({});
 
@@ -52,8 +52,8 @@ const UpdateDeclarer = () => {
       sdt: data.phoneNumber,
       dia_chi: data.address,
       dia_diem: data.goPro,
-      trieu_chung: { ...data.trieuChung },
-      tiep_xuc: { ...data.tiepXuc },
+      trieu_chung: [...data.trieuChung],
+      tiep_xuc: [...data.tiepXuc],
     };
     setTimeout(() => {
       sendDataHandler(body)
@@ -62,11 +62,12 @@ const UpdateDeclarer = () => {
           toast({
             position: "bottom",
             title: "Cập nhật thành công ❤️",
-            description: "Cảm ơn bạn đã dành thời gian cho chũng tôi",
+            description: "Cảm ơn bạn đã dành thời gian cho chúng tôi",
             status: "success",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
           });
+          props.history.push("/quan-ly/kbyt");
         })
         .catch((er) => {
           toast({
@@ -74,7 +75,7 @@ const UpdateDeclarer = () => {
             title: "Đã có lỗi xảy ra",
             description: "Hãy thử lại...",
             status: "error",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
           });
         });
@@ -94,4 +95,4 @@ const UpdateDeclarer = () => {
   );
 };
 
-export default UpdateDeclarer;
+export default withRouter(UpdateDeclarer);
