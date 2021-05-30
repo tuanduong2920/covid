@@ -3,7 +3,6 @@ import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
 import FormOTP from "../../../Components/Form/FormOTP";
 
-
 const KBYT = () => {
   const toast = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,8 +31,8 @@ const KBYT = () => {
       sdt: data.phoneNumber,
       dia_chi: data.address,
       dia_diem: data.goPro,
-      trieu_chung: { ...data.trieuChung },
-      tiep_xuc: { ...data.tiepXuc },
+      trieu_chung: [...data.trieuChung],
+      tiep_xuc: [...data.tiepXuc],
     };
     setTimeout(() => {
       sendDataHandler(body)
@@ -124,7 +123,7 @@ const KBYT = () => {
           });
       }, 500);
     } else {
-      console.log("data",data);
+      console.log("data", data);
       setIsSubmitting(true);
       fetch(`http://45.32.102.61:8080/api/verify/${data.phoneNumber}`, {
         method: "GET",

@@ -3,16 +3,9 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  
 } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  Stack,
-} from "@chakra-ui/layout";
+import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/layout";
 import HalfBox from "../UI/HalfBox";
 import { useForm } from "react-hook-form";
 import { Select } from "@chakra-ui/select";
@@ -23,7 +16,24 @@ const Form = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    getValues
   } = useForm();
+
+  if (props.declarer) {
+    
+    setValue("name", props.declarer.ho_ten);
+    setValue("dob", props.declarer.nam_sinh);
+    setValue("email", props.declarer.email);
+    setValue("gender", props.declarer.gioi_tinh);
+    setValue("phoneNumber", props.declarer.sdt);
+    setValue("address", props.declarer.dia_chi);
+    setValue("goPro", props.declarer.dia_diem);
+    setValue("trieuChung", props.declarer.trieu_chung);
+    setValue("tiepXuc", props.declarer.tiep_xuc);
+    console.log(getValues())
+  }
+
   return (
     <Flex justify="center" align="center" w="60%" margin="auto">
       <Box w="100%">
@@ -171,6 +181,7 @@ const Form = (props) => {
                     name="trieuChung"
                     colorScheme="green"
                     defaultValue={[""]}
+                    
                   >
                     <Stack spacing={1}>
                       <Checkbox value="sốt" mb="0" {...register("trieuChung")}>

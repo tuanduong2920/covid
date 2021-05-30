@@ -21,6 +21,18 @@ const Admin = {
     );
     return res;
   },
+  getDeclarer: async () => {
+    const res = await AxiosClient.get("http://45.32.102.61:8080/api/declare", {
+      baseURL: "",
+    });
+    return res;
+  },
+  getDeclarerById: async (id) => {
+    const res = await AxiosClient.get(`http://45.32.102.61:8080/api/declare/${id}`, {
+      baseURL: "",
+    });
+    return res;
+  },
 };
 
 export default Admin;

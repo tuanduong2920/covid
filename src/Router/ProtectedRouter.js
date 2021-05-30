@@ -7,6 +7,7 @@ const ProtectedRouter = ({
   ...rest
 }) => (
   <Route
+    exact
     {...rest}
     render={(props) =>
       isAuthenticated === true ? (

@@ -31,9 +31,9 @@ const PatientsList = ({ address }) => {
               {patientList.map((i) => {
                 let textClass = "text-primary";
                 if (i.status === "Khỏi") textClass = "text-success";
-                if (i.status === "Tử vong") textClass = "text-danger";
+                if (i.status === "Tử vong") textClass = "text-danger";  
                 return (
-                  <tr className={textClass}>
+                  <tr key={i.id} className={textClass}>
                     <td>{i.id}</td>
                     <td>{i.age}</td>
                     <td>{i.status}</td>

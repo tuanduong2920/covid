@@ -4,9 +4,11 @@ import { Redirect, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import KBYT from "./KBYT/KBYT";
+import AddDeclarer from "./Declarer/AddDeclarer";
 import { useState } from "react";
 import ProtectedRouter from "../../Router/ProtectedRouter";
 import Login from "../../Components/Login/Login";
+import UpdateDeclarer from "./Declarer/UpdateDeclarer";
 
 const tokenAction = {
   getToken: () => {
@@ -34,26 +36,20 @@ const Admin = () => {
         )}
       </Route>
       <ProtectedRouter
+        path="/quan-ly/kbyt/them-moi"
+        component={AddDeclarer}
+        isAuthenticated={isAuthenticated}
+      />
+      <ProtectedRouter
+        path="/quan-ly/kbyt/sua/:id"
+        component={UpdateDeclarer}
+        isAuthenticated={isAuthenticated}
+      />
+      <ProtectedRouter
         path="/quan-ly/kbyt"
         component={KBYT}
         isAuthenticated={isAuthenticated}
       />
-      {/* <Route path="/quan-ly/kbyt" exact>
-        <ChakraProvider>
-          {isAuthenticated ? (
-            <AdminHOC>
-              <KBYT />
-            </AdminHOC>
-          ) : (
-            <Redirect to="/quan-ly" />
-          )}
-        </ChakraProvider>
-      </Route> 
-      <ChakraProvider>
-            <AdminHOC>
-              <KBYT />
-            </AdminHOC>
-          </ChakraProvider> */}
     </>
   );
 };
