@@ -9,6 +9,7 @@ import { useState } from "react";
 import ProtectedRouter from "../../Router/ProtectedRouter";
 import Login from "../../Components/Login/Login";
 import UpdateDeclarer from "./Declarer/UpdateDeclarer";
+import Statistical from "./Statistical/Statistical";
 
 const tokenAction = {
   getToken: () => {
@@ -43,6 +44,11 @@ const Admin = () => {
       <ProtectedRouter
         path="/quan-ly/kbyt/sua/:id"
         component={UpdateDeclarer}
+        isAuthenticated={isAuthenticated}
+      />
+      <ProtectedRouter
+        path="/quan-ly/thong-ke"
+        component={Statistical}
         isAuthenticated={isAuthenticated}
       />
       <ProtectedRouter

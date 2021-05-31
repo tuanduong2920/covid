@@ -1,3 +1,10 @@
-.declareListPagination{
-    justify-content: flex-start;
+.declareListPagination {
+  justify-content: flex-start;
+}
+.chakra-badge {
+  text-transform: capitalize !important;
+}
+.pagination-link {
+  margin-right: 3px;
+  padding: 13px 16px;
 }

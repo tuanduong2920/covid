@@ -9,21 +9,13 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,
   Button,
   IconButton,
   useToast,
@@ -33,6 +25,18 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Stack,
+  Heading,
+  Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Code,
 } from "@chakra-ui/react";
 import AdminHOC from "../AdminHOC";
 import Admin from "../../../Api/Admin/Admin";
@@ -49,9 +53,11 @@ import { Link } from "react-router-dom";
 const KBYT = () => {
   const [declareList, setDeclareList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAlert, setIsOpenAlert] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [deleteId, setDeleteId] = useState();
-  const onClose = () => setIsOpen(false);
+  const [modal, setModal] = useState();
+  const onCloseAlert = () => setIsOpenAlert(false);
   const cancelRef = React.useRef();
   const toast = useToast();
 
@@ -67,8 +73,15 @@ const KBYT = () => {
     fetchDeclarer();
   }, []);
 
+  const onOpenDetail = (id) => {
+    const [res] = declareList.filter((i) => i.id === id);
+    setModal(res);
+    console.log(modal);
+    onOpen();
+  };
+
   const deleteDeclarer = async () => {
-    onClose();
+    onCloseAlert();
     try {
       await Admin.deleteDeclarer(deleteId);
       const res = declareList.filter((i) => i.id !== deleteId);
@@ -102,7 +115,9 @@ const KBYT = () => {
       <AdminHOC>
         <Container maxW="container.lg">
           <Flex py={4}>
-            <Box>Danh sách khai báo y tế</Box>
+            <Box p="2">
+              <Heading size="md">Danh sách khai báo y tế</Heading>
+            </Box>
             <Spacer />
             <Box>
               <Link to="/quan-ly/kbyt/them-moi">
@@ -122,16 +137,39 @@ const KBYT = () => {
               <Tr>
                 <Th>Họ và tên</Th>
                 <Th>email</Th>
+                <Th></Th>
                 <Th isNumeric>#</Th>
               </Tr>
             </Thead>
             <Tbody>
               {pageList.map((i) => {
                 const path = `/quan-ly/kbyt/sua/${i.id}`;
+
                 return (
                   <Tr>
-                    <Td>{i.ho_ten}</Td>
+                    <Td
+                      onClick={() => onOpenDetail(i.id)}
+                      _hover={{
+                        background: "white",
+                        color: "blue.500",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {i.ho_ten}
+                    </Td>
                     <Td>{i.email}</Td>
+                    <Td>
+                      {i.tiep_xuc[0] !== "{}" && (
+                        <Badge mx="0.5" fontSize="8px" colorScheme="orange">
+                          Tiếp xúc
+                        </Badge>
+                      )}
+                      {i.trieu_chung[0] !== "{}" && (
+                        <Badge mx="0.5" fontSize="8px" colorScheme="red">
+                          Triệu chứng
+                        </Badge>
+                      )}
+                    </Td>
                     <Td isNumeric>
                       <Menu>
                         <MenuButton
@@ -147,7 +185,7 @@ const KBYT = () => {
                           <MenuItem
                             onClick={() => {
                               setDeleteId(i.id);
-                              return setIsOpen(true);
+                              return setIsOpenAlert(true);
                             }}
                             icon={<DeleteIcon />}
                           >
@@ -168,17 +206,72 @@ const KBYT = () => {
               itemsCountPerPage={6}
               totalItemsCount={declareList.length}
               onChange={(page) => setCurrentPage(page)}
-              itemClass="page-item"
-              linkClass="page-link"
+              itemClass="page-item "
+              linkClass="page-link pagination-link"
               hideFirstLastPages
             />
           </Box>
         </Container>
       </AdminHOC>
+      {modal !== undefined && (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Thông tin chi tiết</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Box my="1">
+                <Code children="Họ tên: " /> {modal.ho_ten}
+              </Box>
+              <Box my="1">
+                <Code children="Giới tính: " />{" "}
+                {modal.gioi_tinh === 1 ? "Nam" : "Nữ"}
+              </Box>
+              <Box my="1">
+                <Code children="Ngày sinh: " /> {modal.nam_sinh}
+              </Box>
+              <Box my="1">
+                <Code children="Địa chỉ: " /> {modal.dia_chi}
+              </Box>
+              <Box my="1">
+                <Code children="Eamil: " /> {modal.email}
+              </Box>
+              <Box my="1">
+                <Code children="Số điện thoại: " /> {modal.sdt}
+              </Box>
+              <Box my="1">
+                <Code children="Di chuyển: " /> {modal.dia_diem}
+              </Box>
+              <Box my="1">
+                <Code children="Tiếp xúc: " />:{" "}
+                {modal.tiep_xuc[0] !== "{}"
+                  ? modal.tiep_xuc.map((i, ix) => (
+                      <Code mx="1" colorScheme="red" key={ix} children={i} />
+                    ))
+                  : "Không"}
+              </Box>
+              <Box my="1">
+                <Code children="Triệu chứng: " />:{" "}
+                {modal.trieu_chung[0] !== "{}"
+                  ? modal.trieu_chung.map((i, ix) => (
+                      <Code mx="1" colorScheme="red" key={ix} children={i} />
+                    ))
+                  : "Không"}
+              </Box>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Thoát
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
       <AlertDialog
-        isOpen={isOpen}
+        isOpen={isOpenAlert}
         leastDestructiveRef={cancelRef}
-        onClose={onClose}
+        onClose={onCloseAlert}
       >
         <AlertDialogOverlay>
           <AlertDialogContent>

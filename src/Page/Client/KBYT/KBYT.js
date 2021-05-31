@@ -150,8 +150,9 @@ const KBYT = () => {
         />
       )}
       {isVerify && (
-        <Form onConfirm={confirmHandler} isSubmitting={isSubmitting}></Form>
-      )}
+        <Form onConfirm={confirmHandler} phoneNumber={phoneNumber} isSubmitting={isSubmitting}></Form>
+      ) 
+      }
     </>
   );
 };

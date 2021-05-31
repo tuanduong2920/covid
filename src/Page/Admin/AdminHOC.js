@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   HStack,
- 
   IconButton,
   Button,
   useDisclosure,
@@ -14,9 +13,12 @@ import Admin from "../../Api/Admin/Admin";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Links = ["Danh sách"];
+const Links = [
+  { path: "/quan-ly/kbyt", name: "Danh sách" },
+  { path: "/quan-ly/thong-ke", name: "Thống kê" },
+];
 
-const NavLink = ({ children }) => (
+const NavLink = ({ path, name }) => (
   <Link
     px={2}
     py={1}
@@ -25,9 +27,9 @@ const NavLink = ({ children }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    to="/quan-ly/kbyt"
+    to={path}
   >
-    {children}
+    {name}
   </Link>
 );
 
@@ -44,7 +46,8 @@ export default function AdminHOC({ children }) {
       window.location.reload();
       setIsOut(false);
     } catch (error) {
-      console.log(error);
+      localStorage.removeItem("token");
+      window.location.reload();
       setIsOut(false);
     }
   };
@@ -68,7 +71,7 @@ export default function AdminHOC({ children }) {
               display={{ base: "none", md: "flex" }}
             >
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.name} {...link}></NavLink>
               ))}
             </HStack>
           </HStack>
@@ -90,7 +93,7 @@ export default function AdminHOC({ children }) {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.name} {...link}></NavLink>
               ))}
             </Stack>
           </Box>

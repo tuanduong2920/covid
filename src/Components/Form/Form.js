@@ -32,8 +32,12 @@ const Form = (props) => {
     setValue("trieuChung", props.declarer.trieu_chung);
     setValue("tiepXuc", props.declarer.tiep_xuc);
   }
+  if (props.phoneNumber) {
+    
+    setValue("phoneNumber", props.phoneNumber);
+  }
 
-  console.log(getValues());
+  
   return (
     <Flex justify="center" align="center" w="60%" margin="auto">
       <Box w="100%">
@@ -253,7 +257,6 @@ const Form = (props) => {
                       </CheckboxGroup>
                     )}
                   />
-                  
                 </FormControl>
               </HalfBox>
             </Flex>
