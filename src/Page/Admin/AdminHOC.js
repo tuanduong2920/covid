@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Admin from "../../Api/Admin/Admin";
 import { useState } from "react";
 import { Link } from "react-router-dom";

@@ -11,7 +11,7 @@ const UpdateDeclarer = (props) => {
   const { id } = useParams();
   const toast = useToast();
 
-  useEffect(() => {
+  useEffect((toast) => {
     const fectDeclarerById = async () => {
       try {
         const { data } = await Admin.getDeclarerById(id);

@@ -17,7 +17,7 @@ const Form = (props) => {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues,
+
     control,
   } = useForm();
 
@@ -33,11 +33,9 @@ const Form = (props) => {
     setValue("tiepXuc", props.declarer.tiep_xuc);
   }
   if (props.phoneNumber) {
-    
     setValue("phoneNumber", props.phoneNumber);
   }
 
-  
   return (
     <Flex justify="center" align="center" w="60%" margin="auto">
       <Box w="100%">

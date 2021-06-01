@@ -8,7 +8,7 @@ import {
   Divider,
   Heading,
   Grid,
-  Text,
+  
   GridItem,
   Table,
   Thead,
@@ -40,24 +40,6 @@ import Admin from "../../../Api/Admin/Admin";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-
-const Feature = ({ name, phoneNumber, ...rest }) => {
-  return (
-    <Box
-      p={5}
-      borderWidth="1px"
-      flex="1"
-      borderRadius="md"
-      shadow="md"
-      {...rest}
-    >
-      <Flex>
-        <Text>{name}</Text>
-        <Text>{phoneNumber}</Text>
-      </Flex>
-    </Box>
-  );
-};
 
 const Statistical = () => {
   const [initialDeclareList, setInitialDeclareList] = useState([]);

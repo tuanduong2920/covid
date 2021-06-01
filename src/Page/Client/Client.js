@@ -3,7 +3,7 @@ import PageHOC from "./PageHOC";
 import Dashboard from "../Client/Dashboard/Dashboard";
 import Map from "../Client/Map/Map";
 import KBYT from "../Client/KBYT/KBYT";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const Client = () => {

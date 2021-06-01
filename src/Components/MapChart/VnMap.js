@@ -93,7 +93,7 @@ const VnMap = ({ setTooltipContent, onClickProvince, province, position }) => {
                 const { NAME_1 } = geography.properties;
                 // console.log(geography.geometry.coordinates);
 
-                const { Province_Name, Confirmed, Recovered, Deaths } =
+                const {  Confirmed, Recovered, Deaths } =
                   getProvinceByName(NAME_1)
                     ? getProvinceByName(NAME_1)
                     : {
@@ -108,7 +108,7 @@ const VnMap = ({ setTooltipContent, onClickProvince, province, position }) => {
                     key={i}
                     geography={geography}
                     onMouseEnter={() =>
-                      setTooltipContent(`${NAME_1} — ${Confirmed}`)
+                      setTooltipContent(`${NAME_1} - Dương tính: ${Confirmed} - Phục hồi: ${Recovered} - Tử vong: ${Deaths}`)
                     }
                     onClick={() => onClickProvince({ value: `${NAME_1}` })}
                     onMouseLeave={() => setTooltipContent("")}
