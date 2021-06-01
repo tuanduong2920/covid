@@ -23,7 +23,7 @@ const Header = () => {
     <header className="header-wrapper">
       <div className="container">
         <div className="row justify-content-between align-items-center">
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="logo-wrap">
               <Link className="logo-link" to="/">
                 <img src={CoronaRed} className="logo" alt="logo" />
@@ -40,7 +40,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="col-md-7 col-lg-5">
+          <div className="col-md-7 col-lg-6">
             <div className="navbar-wrap">
               <nav className="menubar">
                 <ul className="nav">
@@ -52,6 +52,9 @@ const Header = () => {
                   </li>
                   <li>
                     <NavLink to="/khai-bao-y-te">Khai báo y tế</NavLink>
+                  </li>
+                  <li>
+                    <a href="https://blogncov.000webhostapp.com/Home">Tin tức</a>
                   </li>
                 </ul>
               </nav>
