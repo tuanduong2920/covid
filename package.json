@@ -1,10 +1,6 @@
 {
-  "name": "app-covid-pro",
+  "name": "covid19-app",
   "version": "0.1.0",
-  "engines": {
-    "node": "14.x"
-  },
-  "homepage": "https://tuanduong2920.github.io/covid/",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",
