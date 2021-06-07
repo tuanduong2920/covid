@@ -1,7 +1,13 @@
 {
   "name": "covid19-app",
   "version": "0.1.0",
+<<<<<<< HEAD
   "private": true,
+=======
+ 
+  "homepage": "https://tuanduong2920.github.io/covid/",
+  
+>>>>>>> 52739854105e0c693e9b2ebebe561d7eb84e9ebf
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",
     "@chakra-ui/react": "^1.6.2",
